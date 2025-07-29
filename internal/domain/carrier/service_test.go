@@ -2,6 +2,8 @@ package carrier
 
 import (
 	contracts "carrierCheck/internal/contracts/carrier"
+	internalerrors "carrierCheck/internal/internal-errors"
+	"errors"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -37,12 +39,6 @@ func Test_Create_Carrier(t *testing.T) {
 }
 
 func Test_Create_SaveCarrier(t *testing.T) {
-	createCarrier := contracts.CreateCarrier{
-		Name:    "Test Carrier",
-		Email:   []string{"test@example.com", "test2@example.com"},
-		Phone:   "2134567890",
-		Contact: "John Doe",
-	}
 	mockCarrierRepository := new(MockCarrierRepository)
     mockCarrierRepository.On("Save", mock.MatchedBy(func (carrier *Carrier) bool {
 		if (carrier.Name != createCarrier.Name) || 
@@ -59,4 +55,16 @@ func Test_Create_SaveCarrier(t *testing.T) {
 	service.Create(createCarrier)
 
 	mockCarrierRepository.AssertExpectations(t)
+}
+
+func Test_Create_ValidateRepositorySaveCarrier(t *testing.T) {
+	assert := assert.New(t)
+	
+	mockCarrierRepository := new(MockCarrierRepository)
+    mockCarrierRepository.On("Save", mock.Anything).Return(errors.New("error to save on database"))
+
+	service.Repository = mockCarrierRepository
+	_, err := service.Create(createCarrier)
+
+	assert.True(errors.Is(err, internalerrors.ErrInternal))
 }

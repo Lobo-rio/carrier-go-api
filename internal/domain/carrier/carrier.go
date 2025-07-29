@@ -1,22 +1,23 @@
 package carrier
 
 import (
+	internalerrors "carrierCheck/internal/internal-errors"
 	"time"
 
 	"github.com/rs/xid"
 )
 
 type EmailCarrier struct {
-	Email string `json:"email"`
+	Email string `json:"email" validate:"email,required"`
 }
 
 type Carrier struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Email     []EmailCarrier
-	Phone     string `json:"phone"`
-	Contact   string `json:"contact"`
-	CreatedAt time.Time
+	ID        string `json:"id" validate:"required"`
+	Name      string `json:"name" validate:"min=3,max=60"`
+	Email     []EmailCarrier `validate:"min=1,dive"`
+	Phone     string `json:"phone" validate:"required"`
+	Contact   string `json:"contact" validate:"min=5,max=60"`
+	CreatedAt time.Time `json:"created_at" validate:"required"`
 	UpdatedAt string `json:"updated_at"`
 }
 
@@ -27,12 +28,19 @@ func NewCarrier(name string, phone string, contact string, emails []string) (*Ca
 		emailCarrier[index].Email = email
 	}
 
-	return &Carrier{
+	carrier := &Carrier{
 		ID:        xid.New().String(),
 		Name:      name,
 		Email:    emailCarrier,
 		Phone:     phone,
 		Contact:   contact,
 		CreatedAt: time.Now(),
-	}, nil
+	}
+
+	err := internalerrors.ValidateStruct(carrier)
+    if err == nil {
+	    return carrier, nil
+    }
+
+	return nil, err
 }
