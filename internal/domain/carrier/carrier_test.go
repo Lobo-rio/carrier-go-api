@@ -93,3 +93,11 @@ func Test_NewCarrier_MustValidateEmailMin(t *testing.T) {
 
 	assert.Equal("email is required with min 1", err.Error())
 }
+
+func Test_NewCarrier_MustValidateEmail(t *testing.T) {
+	assert := assert.New(t)
+
+	_, err := NewCarrier(name, phone, contact, []string{"invalid-email"})
+
+	assert.Equal("email is invalid", err.Error())
+}

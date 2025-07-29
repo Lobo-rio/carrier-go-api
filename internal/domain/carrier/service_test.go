@@ -31,7 +31,10 @@ func (r *MockCarrierRepository) Save(carrier *Carrier) error {
 
 func Test_Create_Carrier(t *testing.T) {
 	assert := assert.New(t)
-	
+	mockCarrierRepository := new(MockCarrierRepository)
+	mockCarrierRepository.On("Save", mock.Anything).Return(nil)
+	service.Repository = mockCarrierRepository
+
 	id, err := service.Create(createCarrier)
 
 	assert.NotNil(id)
