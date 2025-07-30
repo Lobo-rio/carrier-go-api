@@ -8,8 +8,8 @@ import (
 )
 
 type Product struct {
-	ID        string    `json:"id" validate:"required"`
-	Name      string    `json:"name" validate:"min=5,max=80"`
+	ID        string    `json:"id" validate:"required" gorm:"size:50"`
+	Name      string    `json:"name" validate:"min=5,max=80" gorm:"size:80"`
 	Price     float64    `json:"price" validate:"required,gt=0"`
 	Qtde      int     `json:"qtde" validate:"required,gt=0"`
 	CreatedAt time.Time `json:"created_at" validate:"required"`

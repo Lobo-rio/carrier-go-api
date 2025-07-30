@@ -18,8 +18,11 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 
+	connection := database.Connection()
 	carrierService := carrier.CarrierServiceImp{
-		Repository: &database.CarrierRepository{},
+		Repository: &database.CarrierRepository{
+			Db: connection,
+		},
 	}
 	handler := endpoints.Handler{
 		CarrierService: &carrierService,

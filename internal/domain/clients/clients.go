@@ -8,10 +8,10 @@ import (
 )
 
 type Client struct {
-	ID        string `json:"id" validate:"required"`
-	Name      string `json:"name" validate:"min=3,max=60"`
-	Email     string `json:"email" validate:"email"`
-	Phone     string `json:"phone" validate:"required"`
+	ID        string `json:"id" validate:"required" gorm:"size:50"`
+	Name      string `json:"name" validate:"min=3,max=60" gorm:"size:60"`
+	Email     string `json:"email" validate:"email" gorm:"size:100"`
+	Phone     string `json:"phone" validate:"required" gorm:"size:27"`
 	CreatedAt time.Time `json:"created_at" validate:"required"`
 	UpdatedAt string `json:"updated_at"`
 }
