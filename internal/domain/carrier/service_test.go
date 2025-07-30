@@ -29,6 +29,11 @@ func (r *MockCarrierRepository) Save(carrier *Carrier) error {
 	return args.Error(0)
 }
 
+func (r *MockCarrierRepository) GetAll() ([]Carrier, error) {
+	args := r.Called()
+	return args.Get(0).([]Carrier), args.Error(1)
+}
+
 func Test_Create_Carrier(t *testing.T) {
 	assert := assert.New(t)
 	mockCarrierRepository := new(MockCarrierRepository)

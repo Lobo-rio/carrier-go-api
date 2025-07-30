@@ -1,0 +1,12 @@
+POST http://localhost:3000/carriers
+Content-Type: application/json
+
+{
+    "name": "Carrier Name",
+    "email":   ["test@company.com"],
+	"phone":   "21 974558555",
+	"contact": "John Doe"
+}
+
+###
+GET http://localhost:3000/carriers
