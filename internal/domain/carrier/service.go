@@ -5,11 +5,14 @@ import (
 	internalerrors "carrierCheck/internal/internal-errors"
 )
 
-type CarrierService struct {
+type CarrierService interface {
+	Create(createCarrier contracts.CreateCarrier) (string, error)
+}
+type CarrierServiceImp struct {
 	Repository CarrierRepository
 }
 
-func (s *CarrierService) Create(createCarrier contracts.CreateCarrier) (string, error) {
+func (s *CarrierServiceImp) Create(createCarrier contracts.CreateCarrier) (string, error) {
 	carrier, err := NewCarrier(createCarrier.Name, createCarrier.Phone, createCarrier.Contact, createCarrier.Email)
 	if err != nil {
 		return "", err

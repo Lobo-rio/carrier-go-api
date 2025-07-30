@@ -18,11 +18,11 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 
-	carrierService := carrier.CarrierService{
+	carrierService := carrier.CarrierServiceImp{
 		Repository: &database.CarrierRepository{},
 	}
 	handler := endpoints.Handler{
-		CarrierService: carrierService,
+		CarrierService: &carrierService,
 	}
 
 	router.Post("/carriers", endpoints.HandlerError(handler.CreateCarrier))

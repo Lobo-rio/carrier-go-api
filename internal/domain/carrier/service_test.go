@@ -17,7 +17,7 @@ var (
 		Phone:   "2134567890",
 		Contact: "John Doe",
 	}
-	service = CarrierService{}
+	service = CarrierServiceImp{}
 )
 
 type MockCarrierRepository struct {
