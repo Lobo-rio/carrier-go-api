@@ -9,6 +9,8 @@ type CarrierService interface {
 	Create(createCarrier contracts.CreateCarrier) (string, error)
 	GetById(id string) (*contracts.ResponseCarrier, error)
 	GetAll() ([]contracts.ResponseCarrier, error)
+	Update(id string, request contracts.UpdateCarrier) error
+	Delete(id string)  error
 }
 type CarrierServiceImp struct {
 	Repository CarrierRepository
@@ -71,4 +73,37 @@ func (s *CarrierServiceImp) GetAll() ([]contracts.ResponseCarrier, error) {
 	}
 
 	return responseCarriers, nil
+}
+
+func (s *CarrierServiceImp) Update(id string, request contracts.UpdateCarrier) error {
+	carrier, err := s.Repository.GetById(id)
+	if err != nil {
+		return internalerrors.ErrInternal
+	}
+
+	carrier.Name = request.Name
+	carrier.Phone = request.Phone
+	carrier.Contact = request.Contact
+
+	err = s.Repository.Save(carrier)
+	if err != nil {
+		return internalerrors.ErrInternal
+	}
+
+	return nil
+}
+
+
+func (s *CarrierServiceImp) Delete(id string)  error {
+	carrier, err := s.Repository.GetById(id)
+	if err != nil {
+		return internalerrors.ErrInternal
+	}
+
+	err = s.Repository.Delete(carrier)
+	if err != nil {
+		return internalerrors.ErrInternal
+	}
+
+	return nil
 }

@@ -34,6 +34,16 @@ func (r *MockCarrierRepository) GetAll() ([]Carrier, error) {
 	return args.Get(0).([]Carrier), args.Error(1)
 }
 
+func (r *MockCarrierRepository) GetById(id string) (*Carrier, error) {
+	args := r.Called()
+	return args.Get(0).(*Carrier), args.Error(1)
+}
+
+func (r *MockCarrierRepository) Delete(id string) error {
+	args := r.Called(id)
+	return args.Error(0)
+}
+
 func Test_Create_Carrier(t *testing.T) {
 	assert := assert.New(t)
 	mockCarrierRepository := new(MockCarrierRepository)

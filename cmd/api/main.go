@@ -31,6 +31,8 @@ func main() {
 	router.Post("/carriers", endpoints.HandlerError(handler.CreateCarrier))
 	router.Get("/carriers/{id}", endpoints.HandlerError(handler.GetByIdCarrier))
 	router.Get("/carriers", endpoints.HandlerError(handler.GetAllCarrier))
+	router.Patch("/carriers/{id}", endpoints.HandlerError(handler.UpdateCarrier))
+	router.Delete("/carriers/{id}", endpoints.HandlerError(handler.DeleteCarrier))
 	
 	http.ListenAndServe(":3000", router)
 }
