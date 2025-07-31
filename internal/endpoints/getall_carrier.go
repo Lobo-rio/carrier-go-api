@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-func (h *Handler) CreateGetAll(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
-	//carriers, err := h.CarrierService.Repository.GetAll()
-	return nil, 200, nil
+func (h *Handler) GetAllCarrier(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
+	carriers, err := h.CarrierService.GetAll()
+	return carriers, 200, err
 }

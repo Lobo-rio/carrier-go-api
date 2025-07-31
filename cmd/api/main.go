@@ -29,7 +29,8 @@ func main() {
 	}
 
 	router.Post("/carriers", endpoints.HandlerError(handler.CreateCarrier))
-	router.Get("/carriers", endpoints.HandlerError(handler.CreateGetAll))
-
+	router.Get("/carriers/{id}", endpoints.HandlerError(handler.GetByIdCarrier))
+	router.Get("/carriers", endpoints.HandlerError(handler.GetAllCarrier))
+	
 	http.ListenAndServe(":3000", router)
 }

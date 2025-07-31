@@ -4,14 +4,14 @@ POST http://localhost:3000/carriers
 Content-Type: application/json
 
 {
-    "name": "Carrier Name",
-    "email":   ["test@company.com"],
-	"phone":   "21 974558555",
-	"contact": "John Doe"
+    "name": "Carrier LTDA - IOT",
+    "email":   ["test@company.com", "test2@company.com", "test3@company.com"],
+	"phone":   "21 97455-8555",
+	"contact": "John Doe IOT"
 }
 
 ### Get All Carrier
 GET http://localhost:3000/carriers
 
 ### Get By ID Carrier
-GET http://localhost:3000/carriers/:id
+GET http://localhost:3000/carriers/d25meh0qfcbh7g1pp5h0

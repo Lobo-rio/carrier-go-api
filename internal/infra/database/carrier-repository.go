@@ -21,8 +21,8 @@ func (c *CarrierRepository) GetAll() ([]carrier.Carrier, error) {
 	return carriers, tx.Error
 }
 
-func (c *CarrierRepository) GetByID(id string) (*carrier.Carrier, error) {
+func (c *CarrierRepository) GetById(id string) (*carrier.Carrier, error) {
 	var carrier carrier.Carrier
-	tx := c.Db.First(&carrier, id)
+	tx := c.Db.Preload("Email").First(&carrier, "id = ?", id)
 	return &carrier, tx.Error
 }
