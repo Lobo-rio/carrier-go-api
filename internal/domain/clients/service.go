@@ -5,11 +5,15 @@ import (
 	internalerrors "carrierCheck/internal/internal-errors"
 )
 
-type ClientsService struct {
+type ClientsService interface {
+	Create(createClient contracts.CreateClient) (string, error)
+}
+
+type ClientsServiceImp struct {
 	Repository ClientsRepository
 }
 
-func (s *ClientsService) Create(createClient contracts.CreateClient) (string, error) {
+func (s *ClientsServiceImp) Create(createClient contracts.CreateClient) (string, error) {
 	client, err := NewClient(createClient.Name, createClient.Email, createClient.Phone)
 	if err != nil {
 		return "", err
