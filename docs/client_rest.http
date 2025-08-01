@@ -1,0 +1,52 @@
+@url = http://localhost:3000
+
+### Create Client
+# @name client_create
+POST {{url}}/clients
+Content-Type: application/json
+
+{
+    "name": "Client Create",
+    "email": "test3@company.com",
+	"phone": "21 97455-8555",
+	"address": [
+		{
+		"address": "Rua Teste",
+		"number": "123",
+		"complement": "Apto 101",
+		"neighborhood": "Centro",
+		"city": "Nova Iguaço",
+		"state": "RJ"
+		},
+	    {
+		    "address": "Rua Teste Drive",
+		    "number": "S/N",
+		    "complement": "Lote 11 Quadra 06",
+		    "neighborhood": "Parque Alian",
+		    "city": "São João de Meriti",
+		    "state": "RJ"
+		}
+	]
+}
+
+###
+@client_id = {{client_create.response.body.id}}
+
+### Get All Client
+GET {{url}}/clients
+
+### Get By ID Client
+GET {{url}}/clients/{{client_id}}
+
+### Update Client
+PATCH {{url}}/clients/{{client_id}}
+Content-Type: application/json
+
+{
+    "name": "Client Create Updated",
+    "email": "updated_test3@company.com",
+	"phone": "21 97455-8500",
+}
+
+### Delete Client
+DELETE {{url}}/clients/{{client_id}}
