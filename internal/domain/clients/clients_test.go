@@ -18,7 +18,7 @@ var (
 func Test_NewClient_Create(t *testing.T) {
     assert := assert.New(t)
 
-	client, _ := NewClient(name, email, phone)
+	client, _ := NewClient(name, email, phone, []AddressCLients{})
 
 	assert.Equal(client.Name, name)
 	assert.Equal(client.Email, email)
@@ -28,7 +28,7 @@ func Test_NewClient_Create(t *testing.T) {
 func Test_NewClient_IDisNotNil(t *testing.T) {
 	assert := assert.New(t)
 
-	client, _ := NewClient(name, email,phone)
+	client, _ := NewClient(name, email, phone, []AddressCLients{})
 
 	assert.NotNil(client.ID)
 }
@@ -37,7 +37,7 @@ func Test_NewClient_CreatedAtMustBeNow(t *testing.T) {
 	assert := assert.New(t)
 	now := time.Now().Add(-time.Minute)
 
-	client, _ := NewClient(name, email, phone)
+	client, _ := NewClient(name, email, phone, []AddressCLients{})
 
 	assert.Greater(client.CreatedAt, now)
 }
@@ -45,7 +45,7 @@ func Test_NewClient_CreatedAtMustBeNow(t *testing.T) {
 func Test_NewClient_MustValidateNameMin(t *testing.T) {
 	assert := assert.New(t)
 	
-	_, err := NewClient(fake.Lorem().Text(2), phone, email)
+	_, err := NewClient(fake.Lorem().Text(2), phone, email, []AddressCLients{})
 
 	assert.Equal("name is required with min 3", err.Error())
 }
@@ -53,7 +53,7 @@ func Test_NewClient_MustValidateNameMin(t *testing.T) {
 func Test_NewClient_MustValidateNameMax(t *testing.T) {
 	assert := assert.New(t)
 	
-	_, err := NewClient(fake.Lorem().Text(61), email, phone)
+	_, err := NewClient(fake.Lorem().Text(61), email, phone, []AddressCLients{})
 
 	assert.Equal("name is required with max 60", err.Error())
 }
@@ -61,7 +61,7 @@ func Test_NewClient_MustValidateNameMax(t *testing.T) {
 func Test_NewClient_MustValidatePhone(t *testing.T) {
 	assert := assert.New(t)
 	
-	_, err := NewClient(name, email, "")
+	_, err := NewClient(name, email, "", []AddressCLients{})
 
 	assert.Equal("phone is required", err.Error())
 }
@@ -69,7 +69,7 @@ func Test_NewClient_MustValidatePhone(t *testing.T) {
 func Test_NewClient_MustValidateEmail(t *testing.T) {
 	assert := assert.New(t)
 	
-	_, err := NewClient(name, "email-invalid", phone)
+	_, err := NewClient(name, "email-invalid", phone, []AddressCLients{})
 
 	assert.Equal("email is invalid", err.Error())
 }

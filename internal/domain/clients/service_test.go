@@ -16,7 +16,7 @@ var (
 		Email: "test@example.com",
 		Phone: "2134567890",
 	}
-	service = ClientsService{}
+	service = ClientsServiceImp{}
 )
 
 type MockClientsRepository struct {
@@ -24,6 +24,26 @@ type MockClientsRepository struct {
 }
 
 func (r *MockClientsRepository) Save(client *Client) error {
+	args := r.Called(client)
+	return args.Error(0)
+}
+
+func (r *MockClientsRepository) GetAll() ([]Client, error) {
+	args := r.Called()
+	return args.Get(0).([]Client), args.Error(1)
+}
+
+func (r *MockClientsRepository) GetById(id string) (*Client, error) {
+	args := r.Called()
+	return args.Get(0).(*Client), args.Error(1)
+}
+
+func (r *MockClientsRepository) Update(client *Client) error {
+	args := r.Called(client)
+	return args.Error(0)
+}
+
+func (r *MockClientsRepository) Delete(client *Client) error {
 	args := r.Called(client)
 	return args.Error(0)
 }
