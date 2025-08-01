@@ -85,14 +85,13 @@ func (s *CarrierServiceImp) Update(id string, request contracts.UpdateCarrier) e
 	carrier.Phone = request.Phone
 	carrier.Contact = request.Contact
 
-	err = s.Repository.Save(carrier)
+	err = s.Repository.Update(carrier)
 	if err != nil {
 		return internalerrors.ErrInternal
 	}
 
 	return nil
 }
-
 
 func (s *CarrierServiceImp) Delete(id string)  error {
 	carrier, err := s.Repository.GetById(id)

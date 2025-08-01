@@ -39,8 +39,13 @@ func (r *MockCarrierRepository) GetById(id string) (*Carrier, error) {
 	return args.Get(0).(*Carrier), args.Error(1)
 }
 
-func (r *MockCarrierRepository) Delete(id string) error {
-	args := r.Called(id)
+func (r *MockCarrierRepository) Update(carrier *Carrier) error {
+	args := r.Called(carrier)
+	return args.Error(0)
+}
+
+func (r *MockCarrierRepository) Delete(carrier *Carrier) error {
+	args := r.Called(carrier)
 	return args.Error(0)
 }
 

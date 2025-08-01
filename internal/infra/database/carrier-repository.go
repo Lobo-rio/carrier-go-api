@@ -29,7 +29,7 @@ func (c *CarrierRepository) GetById(id string) (*carrier.Carrier, error) {
 
 func (c *CarrierRepository) Update(carrier *carrier.Carrier) error {
 	tx := c.Db.Save(carrier)
-	return tx.Error
+    return tx.Error
 }
 
 func (c *CarrierRepository) Delete(carrier *carrier.Carrier) error {

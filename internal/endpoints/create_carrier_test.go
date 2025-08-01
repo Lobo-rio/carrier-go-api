@@ -31,6 +31,26 @@ func (r *MockCarrierService) Create(createCarrier contracts.CreateCarrier) (stri
 	return args.String(0), args.Error(1)
 }
 
+func (r *MockCarrierService) GetAll() ([]contracts.ResponseCarrier, error) {
+	args := r.Called()
+	return args.Get(0).([]contracts.ResponseCarrier), args.Error(1)
+}
+
+func (r *MockCarrierService) GetById(id string) (*contracts.ResponseCarrier, error) {
+	args := r.Called(id)
+	return args.Get(0).(*contracts.ResponseCarrier), args.Error(1)
+}
+
+func (r *MockCarrierService) Delete(id string) error {
+	args := r.Called(id)
+	return args.Error(0)
+}
+
+func (r *MockCarrierService) Update(id string, updateCarrier contracts.UpdateCarrier) error {
+	args := r.Called(id, updateCarrier)
+	return args.Error(0)
+}
+
 func Test_CreateCarrier_Save(t *testing.T) {
     assert := assert.New(t)
 	service := new(MockCarrierService)
