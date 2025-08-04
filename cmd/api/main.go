@@ -3,6 +3,7 @@ package main
 import (
 	"carrierCheck/internal/domain/carrier"
 	"carrierCheck/internal/domain/clients"
+	"carrierCheck/internal/domain/products"
 	"carrierCheck/internal/endpoints"
 	"carrierCheck/internal/infra/database"
 	"net/http"
@@ -20,6 +21,7 @@ func main() {
 	router.Use(middleware.Recoverer)
 
 	connection := database.Connection()
+	
 	carrierService := carrier.CarrierServiceImp{
 		Repository: &database.CarrierRepository{
 			Db: connection,
@@ -30,9 +32,16 @@ func main() {
 			Db: connection,
 		},
 	}
+	productsService := products.ProductsServiceImp{
+		Repository: &database.ProductsRepository{
+			Db: connection,
+		},
+	}
+
 	handler := endpoints.Handler{
 		CarrierService: &carrierService,
 		ClientsService: &clientsService,
+		ProductsService: &productsService,
 	}
 
 	router.Post("/carriers", endpoints.HandlerError(handler.CreateCarrier))
@@ -45,7 +54,13 @@ func main() {
 	router.Get("/clients/{id}", endpoints.HandlerError(handler.GetByIdClient))
 	router.Get("/clients", endpoints.HandlerError(handler.GetAllClient))
 	router.Patch("/clients/{id}", endpoints.HandlerError(handler.UpdateClient))
-	router.Delete("/clients/{id}", endpoints.HandlerError(handler.UpdateClient))
+	router.Delete("/clients/{id}", endpoints.HandlerError(handler.DeleteClient))
 	
+    router.Post("/products", endpoints.HandlerError(handler.CreateProduct))
+	router.Get("/products/{id}", endpoints.HandlerError(handler.GetByIdProduct))
+	router.Get("/products", endpoints.HandlerError(handler.GetAllProduct))
+	router.Patch("/products/{id}", endpoints.HandlerError(handler.UpdateProduct))
+	router.Delete("/products/{id}", endpoints.HandlerError(handler.DeleteProduct))
+
 	http.ListenAndServe(":3000", router)
 }
