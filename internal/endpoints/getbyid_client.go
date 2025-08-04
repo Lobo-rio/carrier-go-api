@@ -8,6 +8,6 @@ import (
 
 func (h *Handler) GetByIdClient(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
 	id := chi.URLParam(r, "id")
-	client, err := h.ClientService.GetById(id)
+	client, err := h.ClientsService.GetById(id)
 	return client, 200, err
 }

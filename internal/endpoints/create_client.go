@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/render"
 )
 
-func (h *Handler) CreateClients(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
+func (h *Handler) CreateClient(w http.ResponseWriter, r *http.Request) (interface{}, int, error) {
 	var request contracts.CreateClient
 	render.DecodeJSON(r.Body, &request)
 

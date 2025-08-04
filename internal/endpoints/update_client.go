@@ -1,7 +1,7 @@
 package endpoints
 
 import (
-	contracts "clientCheck/internal/contracts/client"
+	contracts "carrierCheck/internal/contracts/clients"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -12,6 +12,6 @@ func (h *Handler) UpdateClient(w http.ResponseWriter, r *http.Request) (interfac
 	id := chi.URLParam(r, "id")
 	var request contracts.UpdateClient
 	render.DecodeJSON(r.Body, &request)
-	err := h.ClientService.Update(id, request)
+	err := h.ClientsService.Update(id, request)
 	return nil, 204, err
 }
