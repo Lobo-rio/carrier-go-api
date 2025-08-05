@@ -9,7 +9,7 @@ import (
 	"github.com/rs/xid"
 )
 
-type Product struct {
+type OrderProduct struct {
 	ProductId string  `json:"product_id" gorm:"size:50"`
 	Product   products.Product `json:"product" gorm:"foreignKey:ProductId;references:ID"`
 	OrderId   string  `json:"order_id" gorm:"size:50"`
@@ -19,18 +19,18 @@ type Product struct {
 
 type Order struct {
 	ID              string    `json:"id" gorm:"size:50"`
-	ClientId       string    `json:"clients_id" gorm:"size:50"`
-	Client          clients.Client `json:"client" gorm:"foreignKey:ClientsId;references:ID"`
+	ClientId       string    `json:"client_id" gorm:"size:50"`
+	Client          clients.Client `json:"client" gorm:"foreignKey:ClientId;references:ID"`
 	AddressId       string    `json:"address_id" gorm:"size:50"`
 	Address         clients.AddressClients  `json:"address" gorm:"foreignKey:AddressId;references:ID"`
-	Products        []Product `json:"products" gorm:"foreignKey:OrderId;constraint:OnDelete:CASCADE;"`
+	Products        []OrderProduct `json:"products" gorm:"foreignKey:OrderId;constraint:OnDelete:CASCADE;"`
 	Status          string    `json:"status" gorm:"size:20"`
 	CreatedAt       time.Time `json:"created_at" validate:"required"`
 	UpdatedAt       string   `json:"updated_at"` 
 }
 
-func NewOrder(clientId string, AddressId string, products []Product) (*Order, error) {
-	product := make([]Product, len(products))
+func NewOrder(clientId string, AddressId string, products []OrderProduct) (*Order, error) {
+	product := make([]OrderProduct, len(products))
 
 	for index, prd := range products {
 		product[index].ProductId = prd.ProductId

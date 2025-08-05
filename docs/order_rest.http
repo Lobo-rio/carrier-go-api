@@ -6,25 +6,18 @@ POST {{url}}/orders
 Content-Type: application/json
 
 {
-    "name": "Order Create",
-    "email": "test3@company.com",
-	"phone": "21 97455-8555",
-	"address": [
+    "clientId": "",
+    "addressId": "",
+	"products": [
 		{
-		    "address": "Rua Teste da Silva",
-		    "number": "123",
-		    "complement": "Apto 101",
-		    "neighborhood": "Centro",
-		    "city": "Nova Iguaço",
-		    "state": "RJ"
+		    "productId": "",
+		    "quantity": 1,
+		    "price": 99.99
 		},
 	    {
-		    "address": "Rua Teste Drive",
-		    "number": "S/N",
-		    "complement": "Lote 11 Quadra 06",
-		    "neighborhood": "Parque Alian",
-		    "city": "São João de Meriti",
-		    "state": "RJ"
+		    "productId": "",
+		    "quantity": 1,
+		    "price": 99.99
 		}
 	]
 }
@@ -43,9 +36,8 @@ PATCH {{url}}/orders/{{order_id}}
 Content-Type: application/json
 
 {
-    "name": "Order Create Updated",
-    "email": "updated_test3@company.com",
-	"phone": "21 97455-8500"
+    "clientId": "",
+    "addressId": "",
 }
 
 ### Delete Order

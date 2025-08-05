@@ -3,6 +3,7 @@ package database
 import (
 	"carrierCheck/internal/domain/carrier"
 	"carrierCheck/internal/domain/clients"
+	"carrierCheck/internal/domain/orders"
 	"carrierCheck/internal/domain/products"
 
 	"gorm.io/driver/postgres"
@@ -17,13 +18,13 @@ func Connection() *gorm.DB {
 		panic("failed to connect to database")
 	}
 
-	db.AutoMigrate(
-		&carrier.Carrier{},
-		&carrier.EmailCarrier{},
-		&products.Product{},
-		&clients.Client{},
-		&clients.AddressClients{},
-	)
+    db.AutoMigrate(&carrier.Carrier{})
+    db.AutoMigrate(&carrier.EmailCarrier{})
+    db.AutoMigrate(&products.Product{})
+    db.AutoMigrate(&clients.Client{})
+    db.AutoMigrate(&clients.AddressClients{})
+    db.AutoMigrate(&orders.Order{})
+    db.AutoMigrate(&orders.OrderProduct{})
 
 	return db
 }
