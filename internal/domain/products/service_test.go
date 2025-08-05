@@ -16,7 +16,7 @@ var (
 		Price: 1.50,
 		Qtde:  10,
 	}
-	service = ProductsService{}
+	service = ProductsServiceImp{}
 )
 
 type MockProductsRepository struct {
@@ -24,6 +24,26 @@ type MockProductsRepository struct {
 }
 
 func (r *MockProductsRepository) Save(product *Product) error {
+	args := r.Called(product)
+	return args.Error(0)
+}
+
+func (r *MockProductsRepository) GetAll() ([]Product, error) {
+	args := r.Called()
+	return args.Get(0).([]Product), args.Error(1)
+}
+
+func (r *MockProductsRepository) GetById(id string) (*Product, error) {
+	args := r.Called(id)
+	return args.Get(0).(*Product), args.Error(1)
+}
+
+func (r *MockProductsRepository) Update(product *Product) error {
+	args := r.Called(product)
+	return args.Error(0)
+}
+
+func (r *MockProductsRepository) Delete(product *Product) error {
 	args := r.Called(product)
 	return args.Error(0)
 }

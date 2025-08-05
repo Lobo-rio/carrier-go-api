@@ -18,9 +18,9 @@ type ClientsServiceImp struct {
 }
 
 func (s *ClientsServiceImp) Create(createClient contracts.CreateClient) (string, error) {
-	addressClients := make([]AddressCLients, len(createClient.Address))
+	addressClients := make([]AddressClients, len(createClient.Address))
 	for i, addr := range createClient.Address {
-		addressClients[i] = AddressCLients{
+		addressClients[i] = AddressClients{
 			Address:      addr.Address,
 			Number:      addr.Number,
 			Complement:  addr.Complement,
@@ -48,7 +48,7 @@ func (s *ClientsServiceImp) GetById(id string) (*contracts.ResponseClient, error
 	if err != nil {
 		return nil, internalerrors.ErrInternal
 	}
-	addressClient := make([]AddressCLients, len(client.Address))
+	addressClient := make([]AddressClients, len(client.Address))
 	for i, address := range client.Address {
 		addressClient[i].Address = address.Address 
 		addressClient[i].Number = address.Number 
@@ -75,7 +75,7 @@ func (s *ClientsServiceImp) GetAll() ([]contracts.ResponseClient, error) {
 
 	responseClients := make([]contracts.ResponseClient, len(clients))
 	for i, client := range clients {
-		addressClient := make([]AddressCLients, len(client.Address))
+		addressClient := make([]AddressClients, len(client.Address))
 		for j, address := range client.Address {
 			addressClient[j].Address = address.Address
 			addressClient[j].Number = address.Number

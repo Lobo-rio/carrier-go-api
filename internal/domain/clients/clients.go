@@ -6,9 +6,9 @@ import (
 
 	"github.com/rs/xid"
 )
-type AddressCLients struct {
+type AddressClients struct {
 	ID 	  string `json:"id" gorm:"size:50"`
-	Address string `json:"address" validate:"email,min=7,max=100,required" gorm:"size:100"`
+	Address string `json:"address" validate:"min=7,max=100,required" gorm:"size:100"`
 	Number string `json:"number" validate:"required" gorm:"size:6"`
 	Complement string `json:"complement" gorm:"size:20"`
 	Neighborhood string `json:"neighborhood" validate:"required" gorm:"size:30"`
@@ -21,13 +21,13 @@ type Client struct {
 	Name      string `json:"name" validate:"min=3,max=60" gorm:"size:60"`
 	Email     string `json:"email" validate:"email" gorm:"size:100"`
 	Phone     string `json:"phone" validate:"required" gorm:"size:27"`
-	Address   []AddressCLients `gorm:"foreignKey:ClientId;constraint:OnDelete:CASCADE;" validate:"min=1,dive"`
+	Address   []AddressClients `gorm:"foreignKey:ClientId;constraint:OnDelete:CASCADE;" validate:"min=1,dive"`
 	CreatedAt time.Time `json:"created_at" validate:"required"`
 	UpdatedAt string `json:"updated_at"`
 }
 
-func NewClient(name string, email string, phone string, addressClients []AddressCLients) (*Client, error) {
-	addressClient := make([]AddressCLients, len(addressClients))
+func NewClient(name string, email string, phone string, addressClients []AddressClients) (*Client, error) {
+	addressClient := make([]AddressClients, len(addressClients))
 
 	for index, address := range addressClients {
 		addressClient[index].Address = address.Address

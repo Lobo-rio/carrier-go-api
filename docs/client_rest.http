@@ -11,12 +11,12 @@ Content-Type: application/json
 	"phone": "21 97455-8555",
 	"address": [
 		{
-		"address": "Rua Teste",
-		"number": "123",
-		"complement": "Apto 101",
-		"neighborhood": "Centro",
-		"city": "Nova Iguaço",
-		"state": "RJ"
+		    "address": "Rua Teste da Silva",
+		    "number": "123",
+		    "complement": "Apto 101",
+		    "neighborhood": "Centro",
+		    "city": "Nova Iguaço",
+		    "state": "RJ"
 		},
 	    {
 		    "address": "Rua Teste Drive",
@@ -45,7 +45,7 @@ Content-Type: application/json
 {
     "name": "Client Create Updated",
     "email": "updated_test3@company.com",
-	"phone": "21 97455-8500",
+	"phone": "21 97455-8500"
 }
 
 ### Delete Client

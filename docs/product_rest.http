@@ -1,0 +1,34 @@
+@url = http://localhost:3000
+
+### Create Product
+# @name product_create
+POST {{url}}/products
+Content-Type: application/json
+
+{
+    "name": "Product Create",
+    "price": 10.50,
+	"qtde": 10
+}
+
+###
+@product_id = {{product_create.response.body.id}}
+
+### Get All Product
+GET {{url}}/products
+
+### Get By ID Product
+GET {{url}}/products/{{product_id}}
+
+### Update Product
+PATCH {{url}}/products/{{product_id}}
+Content-Type: application/json
+
+{
+    "name": "Product Create Updated",
+    "price": 20.99,
+	"qtde": 25
+}
+
+### Delete Product
+DELETE {{url}}/products/{{product_id}}

@@ -22,6 +22,7 @@ func Connection() *gorm.DB {
 		&carrier.EmailCarrier{},
 		&products.Product{},
 		&clients.Client{},
+		&clients.AddressClients{},
 	)
 
 	return db

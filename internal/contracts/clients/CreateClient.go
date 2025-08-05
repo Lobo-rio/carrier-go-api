@@ -11,7 +11,7 @@ type AddressClient struct {
 
 type CreateClient struct {
 	Name    string
+	Address []AddressClient
 	Email   string
 	Phone   string
-	Address []AddressClient
 }
