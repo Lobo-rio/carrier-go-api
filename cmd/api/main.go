@@ -3,6 +3,7 @@ package main
 import (
 	"carrierCheck/internal/domain/carrier"
 	"carrierCheck/internal/domain/clients"
+	"carrierCheck/internal/domain/orders"
 	"carrierCheck/internal/domain/products"
 	"carrierCheck/internal/endpoints"
 	"carrierCheck/internal/infra/database"
@@ -37,11 +38,17 @@ func main() {
 			Db: connection,
 		},
 	}
+	ordersService := orders.OrdersServiceImp{
+		Repository: &database.OrdersRepository{
+			Db: connection,
+		},
+	}
 
 	handler := endpoints.Handler{
 		CarrierService: &carrierService,
 		ClientsService: &clientsService,
 		ProductsService: &productsService,
+		OrdersService: &ordersService,
 	}
 
 	router.Post("/carriers", endpoints.HandlerError(handler.CreateCarrier))
@@ -61,6 +68,12 @@ func main() {
 	router.Get("/products", endpoints.HandlerError(handler.GetAllProduct))
 	router.Patch("/products/{id}", endpoints.HandlerError(handler.UpdateProduct))
 	router.Delete("/products/{id}", endpoints.HandlerError(handler.DeleteProduct))
+
+	router.Post("/orders", endpoints.HandlerError(handler.CreateOrder))
+	router.Get("/orders/{id}", endpoints.HandlerError(handler.GetByIdOrder))
+	router.Get("/orders", endpoints.HandlerError(handler.GetAllOrder))
+	router.Patch("/orders/{id}", endpoints.HandlerError(handler.UpdateOrder))
+	router.Delete("/orders/{id}", endpoints.HandlerError(handler.DeleteOrder))
 
 	http.ListenAndServe(":3000", router)
 }

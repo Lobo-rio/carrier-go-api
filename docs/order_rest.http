@@ -1,0 +1,52 @@
+@url = http://localhost:3000
+
+### Create Order
+# @name order_create
+POST {{url}}/orders
+Content-Type: application/json
+
+{
+    "name": "Order Create",
+    "email": "test3@company.com",
+	"phone": "21 97455-8555",
+	"address": [
+		{
+		    "address": "Rua Teste da Silva",
+		    "number": "123",
+		    "complement": "Apto 101",
+		    "neighborhood": "Centro",
+		    "city": "Nova Iguaço",
+		    "state": "RJ"
+		},
+	    {
+		    "address": "Rua Teste Drive",
+		    "number": "S/N",
+		    "complement": "Lote 11 Quadra 06",
+		    "neighborhood": "Parque Alian",
+		    "city": "São João de Meriti",
+		    "state": "RJ"
+		}
+	]
+}
+
+###
+@order_id = {{order_create.response.body.id}}
+
+### Get All Order
+GET {{url}}/orders
+
+### Get By ID Order
+GET {{url}}/orders/{{order_id}}
+
+### Update Order
+PATCH {{url}}/orders/{{order_id}}
+Content-Type: application/json
+
+{
+    "name": "Order Create Updated",
+    "email": "updated_test3@company.com",
+	"phone": "21 97455-8500"
+}
+
+### Delete Order
+DELETE {{url}}/orders/{{order_id}}
