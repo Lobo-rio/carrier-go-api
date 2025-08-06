@@ -1,13 +1,13 @@
 package contracts
 
-type Product struct {
+type OrderProduct struct {
 	ProductId string
-	Qtde      int
+	Quantity  int
 	Price     float64
 }
 
 type CreateOrder struct {
 	ClientId  string
 	AddressId string
-	Products  []Product
+	Products  []OrderProduct
 }

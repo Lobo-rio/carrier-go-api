@@ -2,6 +2,7 @@ package internalerrors
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/go-playground/validator"
@@ -11,15 +12,18 @@ func ValidateStruct(obj interface{}) error {
 	validate := validator.New()
 	err := validate.Struct(obj)
 
+	fmt.Println("Validation err:", err)
+	fmt.Println("Validation obj:", obj)
+
 	if err == nil {
 		return nil
 	}
-
+	
 	validationErrors := err.(validator.ValidationErrors)
 	validationError := validationErrors[0]
 	
 	field := strings.ToLower(validationError.StructField())
-
+	
 	switch validationError.Tag() {
 	case "required":
 		return errors.New(field + " is required")

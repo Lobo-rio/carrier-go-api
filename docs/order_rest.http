@@ -6,18 +6,13 @@ POST {{url}}/orders
 Content-Type: application/json
 
 {
-    "clientId": "",
-    "addressId": "",
+    "clientId": "d29lk08qfcbmfu3it4s0",
+    "addressId": "d29lk08qfcbmfu3it4rg",
 	"products": [
 		{
-		    "productId": "",
+		    "productId": "d29lk38qfcbmfu3it4sg",
 		    "quantity": 1,
-		    "price": 99.99
-		},
-	    {
-		    "productId": "",
-		    "quantity": 1,
-		    "price": 99.99
+		    "price": 19.99
 		}
 	]
 }
@@ -38,6 +33,14 @@ Content-Type: application/json
 {
     "clientId": "",
     "addressId": "",
+}
+
+### Update Carrier Order
+PATCH {{url}}/orders/carrier/{{order_id}}
+Content-Type: application/json
+
+{
+    "carrierId": ""
 }
 
 ### Delete Order

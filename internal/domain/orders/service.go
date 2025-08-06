@@ -6,21 +6,6 @@ import (
 	"errors"
 )
 
-type OrdersService interface {
-	Create(createOrder contracts.CreateOrder) (string, error)
-	GetById(id string) (*contracts.ResponseOrder, error)
-	GetAll() ([]contracts.ResponseOrder, error)
-	Update(id string, request contracts.UpdateOrder) error
-	UpdateStatusOrderCanceled(id string) error
-	UpdateStatusPaymentApproved(id string) error
-	UpdateStatusSeparatedInStock(id string) error
-	UpdateStatusInvoiceIssued(id string) error
-	UpdateStatusInTransit(id string) error
-	UpdateStatusOutForDelivery(id string) error
-	UpdateStatusDeliveryCompleted(id string) error
-	Delete(id string) error
-}
-
 const (
 	OrderPlaced        = "Order Placed"
 	OrderCanceled      = "Order Canceled"
@@ -32,6 +17,22 @@ const (
 	DeliveryCompleted  = "Delivery Completed"
 )
 
+type OrdersService interface {
+	Create(createOrder contracts.CreateOrder) (string, error)
+	GetById(id string) (*contracts.ResponseOrder, error)
+	GetAll() ([]contracts.ResponseOrder, error)
+	Update(id string, request contracts.UpdateOrder) error
+	UpdateCarrier(id string, request contracts.UpdateCarrierOrder) error
+	UpdateStatusOrderCanceled(id string) error
+	UpdateStatusPaymentApproved(id string) error
+	UpdateStatusSeparatedInStock(id string) error
+	UpdateStatusInvoiceIssued(id string) error
+	UpdateStatusInTransit(id string) error
+	UpdateStatusOutForDelivery(id string) error
+	UpdateStatusDeliveryCompleted(id string) error
+	Delete(id string) error
+}
+
 type OrdersServiceImp struct {
 	Repository OrdersRepository
 }
@@ -41,7 +42,7 @@ func (s *OrdersServiceImp) Create(createOrder contracts.CreateOrder) (string, er
 	for i, prd := range createOrder.Products {
 		product[i] = OrderProduct{
 			ProductId:      prd.ProductId,
-			Quantity:       prd.Qtde,
+			Quantity:       prd.Quantity,
 			Price:   prd.Price,
 		}
 	}
@@ -121,6 +122,21 @@ func (s *OrdersServiceImp) Update(id string, request contracts.UpdateOrder) erro
 	order.ClientId = request.ClientId
 	order.AddressId = request.AddressId
 
+	err = s.Repository.Update(order)
+	if err != nil {
+		return internalerrors.ErrInternal
+	}
+
+	return nil
+}
+
+func (s *OrdersServiceImp) UpdateCarrier(id string, request contracts.UpdateCarrierOrder) error {
+	order, err := s.Repository.GetById(id)
+	if err != nil {
+		return internalerrors.ErrInternal
+	}
+
+	
 	err = s.Repository.Update(order)
 	if err != nil {
 		return internalerrors.ErrInternal

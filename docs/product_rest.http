@@ -6,7 +6,7 @@ POST {{url}}/products
 Content-Type: application/json
 
 {
-    "name": "Product Create",
+    "name": "Product Create II",
     "price": 10.50,
 	"qtde": 10
 }
