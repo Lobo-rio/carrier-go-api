@@ -72,7 +72,8 @@ func main() {
 	router.Post("/orders", endpoints.HandlerError(handler.CreateOrder))
 	router.Get("/orders/{id}", endpoints.HandlerError(handler.GetByIdOrder))
 	router.Get("/orders", endpoints.HandlerError(handler.GetAllOrder))
-	router.Patch("/orders/{id}", endpoints.HandlerError(handler.UpdateOrder))
+	router.Patch("/orders/{id}", endpoints.HandlerError(handler.UpdateOrders))
+	router.Patch("/orders/carrier/{id}", endpoints.HandlerError(handler.UpdateCarrierOrder))
 	router.Delete("/orders/{id}", endpoints.HandlerError(handler.DeleteOrder))
 
 	http.ListenAndServe(":3000", router)
