@@ -21,6 +21,9 @@ GET {{url}}/carriers
 ### Get By ID Carrier
 GET {{url}}/carriers/{{carrier_id}}
 
+### Get By ID Carrier - Test Not Found
+GET {{url}}/carriers/d2aa190qfcbimq75qoaw
+
 ### Update Carrier
 PATCH {{url}}/carriers/{{carrier_id}}
 Content-Type: application/json

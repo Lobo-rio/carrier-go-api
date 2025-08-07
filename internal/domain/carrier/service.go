@@ -34,7 +34,7 @@ func (s *CarrierServiceImp) Create(createCarrier contracts.CreateCarrier) (strin
 func (s *CarrierServiceImp) GetById(id string) (*contracts.ResponseCarrier, error) {
 	carrier, err := s.Repository.GetById(id)
 	if err != nil {
-		return nil, internalerrors.ErrInternal
+		return nil, internalerrors.ProcessErrorToReturn(err)
 	}
 	emails := make([]string, len(carrier.Email))
 	for i, e := range carrier.Email {
@@ -78,7 +78,7 @@ func (s *CarrierServiceImp) GetAll() ([]contracts.ResponseCarrier, error) {
 func (s *CarrierServiceImp) Update(id string, request contracts.UpdateCarrier) error {
 	carrier, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	carrier.Name = request.Name
@@ -96,7 +96,7 @@ func (s *CarrierServiceImp) Update(id string, request contracts.UpdateCarrier) e
 func (s *CarrierServiceImp) Delete(id string)  error {
 	carrier, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	err = s.Repository.Delete(carrier)

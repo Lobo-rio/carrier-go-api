@@ -20,6 +20,9 @@ GET {{url}}/products
 ### Get By ID Product
 GET {{url}}/products/{{product_id}}
 
+### Get By ID Product - Test Not Found
+GET {{url}}/products/d2aa0ogqfcbimq75qo6h
+
 ### Update Product
 PATCH {{url}}/products/{{product_id}}
 Content-Type: application/json

@@ -54,7 +54,7 @@ func (s *ProductsServiceImp) GetAll() ([]contracts.ResponseProduct, error) {
 func (s *ProductsServiceImp) GetById(id string) (*contracts.ResponseProduct, error) {
 	product, err := s.Repository.GetById(id)
 	if err != nil {
-		return nil, internalerrors.ErrInternal
+		return nil, internalerrors.ProcessErrorToReturn(err)
 	}
 	return &contracts.ResponseProduct{
 		ID:        product.ID,
@@ -68,7 +68,7 @@ func (s *ProductsServiceImp) GetById(id string) (*contracts.ResponseProduct, err
 func (s *ProductsServiceImp) Update(id string, request contracts.UpdateProduct) error {
 	product, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	product.Name = request.Name
@@ -86,7 +86,7 @@ func (s *ProductsServiceImp) Update(id string, request contracts.UpdateProduct) 
 func (s *ProductsServiceImp) Delete(id string)  error {
 	product, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	err = s.Repository.Delete(product)

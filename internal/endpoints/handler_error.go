@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/render"
+	"gorm.io/gorm"
 )
 
 type EndpointFunc func(w http.ResponseWriter, r *http.Request) (interface{}, int, error)
@@ -17,7 +18,9 @@ func HandlerError(endpointFunc EndpointFunc) http.HandlerFunc {
 		if err != nil {
 			if errors.Is(err, internalerrors.ErrInternal) {
 			    render.Status(r, 500)
-		    } else {
+		    } else if (errors.Is(err, gorm.ErrRecordNotFound)) {
+			    render.Status(r, 404)
+			}else {
 			    render.Status(r, 400)
 		    }
 		    render.JSON(w, r, map[string]string{"error": err.Error()})

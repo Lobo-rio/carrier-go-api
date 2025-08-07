@@ -31,6 +31,9 @@ GET {{url}}/orders
 ### Get By ID Order
 GET {{url}}/orders/{{order_id}}
 
+### Get By ID Order - Test Bot Found
+GET {{url}}/orders/d2aa2fgqfcbimq75qod0
+
 ### Update Order
 PATCH {{url}}/orders/{{order_id}}
 Content-Type: application/json

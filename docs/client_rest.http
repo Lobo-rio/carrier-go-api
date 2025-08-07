@@ -38,6 +38,9 @@ GET {{url}}/clients
 ### Get By ID Client
 GET {{url}}/clients/{{client_id}}
 
+### Get By ID Client - Test Not Found
+GET {{url}}/clients/f2aa160qfcbimq75qo8g"
+
 ### Update Client
 PATCH {{url}}/clients/{{client_id}}
 Content-Type: application/json

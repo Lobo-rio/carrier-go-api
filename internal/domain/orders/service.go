@@ -65,7 +65,7 @@ func (s *OrdersServiceImp) Create(createOrder contracts.CreateOrder) (string, er
 func (s *OrdersServiceImp) GetById(id string) (*contracts.ResponseOrder, error) {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return nil, internalerrors.ErrInternal
+		return nil, internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	product := make([]OrdersProducts, len(order.OrderProduct))
@@ -116,7 +116,7 @@ func (s *OrdersServiceImp) GetAll() ([]contracts.ResponseOrder, error) {
 func (s *OrdersServiceImp) Update(id string, request contracts.UpdateOrder) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	order.ClientId = request.ClientId
@@ -133,9 +133,8 @@ func (s *OrdersServiceImp) Update(id string, request contracts.UpdateOrder) erro
 func (s *OrdersServiceImp) UpdateCarrier(id string, request contracts.UpdateCarrierOrder) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
-
 	
 	err = s.Repository.Update(order)
 	if err != nil {
@@ -148,7 +147,7 @@ func (s *OrdersServiceImp) UpdateCarrier(id string, request contracts.UpdateCarr
 func (s *OrdersServiceImp) UpdateStatusOrderCanceled(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	order.Status = OrderCanceled
@@ -163,7 +162,7 @@ func (s *OrdersServiceImp) UpdateStatusOrderCanceled(id string) error {
 func (s *OrdersServiceImp) UpdateStatusPaymentApproved(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	if order.Status == OrderCanceled {
@@ -182,7 +181,7 @@ func (s *OrdersServiceImp) UpdateStatusPaymentApproved(id string) error {
 func (s *OrdersServiceImp) UpdateStatusSeparatedInStock(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	if order.Status == OrderCanceled {
@@ -201,7 +200,7 @@ func (s *OrdersServiceImp) UpdateStatusSeparatedInStock(id string) error {
 func (s *OrdersServiceImp) UpdateStatusInvoiceIssued(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	if order.Status == OrderCanceled {
@@ -220,7 +219,7 @@ func (s *OrdersServiceImp) UpdateStatusInvoiceIssued(id string) error {
 func (s *OrdersServiceImp) UpdateStatusInTransit(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	if order.Status == OrderCanceled {
@@ -239,7 +238,7 @@ func (s *OrdersServiceImp) UpdateStatusInTransit(id string) error {
 func (s *OrdersServiceImp) UpdateStatusOutForDelivery(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 	
 	if order.Status == OrderCanceled {
@@ -258,7 +257,7 @@ func (s *OrdersServiceImp) UpdateStatusOutForDelivery(id string) error {
 func (s *OrdersServiceImp) UpdateStatusDeliveryCompleted(id string) error {
 	order, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	if order.Status == OrderCanceled {
@@ -277,7 +276,7 @@ func (s *OrdersServiceImp) UpdateStatusDeliveryCompleted(id string) error {
 func (s *OrdersServiceImp) Delete(id string) error {
 	carrier, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	err = s.Repository.Delete(carrier)

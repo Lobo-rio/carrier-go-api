@@ -46,7 +46,7 @@ func (s *ClientsServiceImp) Create(createClient contracts.CreateClient) (string,
 func (s *ClientsServiceImp) GetById(id string) (*contracts.ResponseClient, error) {
 	client, err := s.Repository.GetById(id)
 	if err != nil {
-		return nil, internalerrors.ErrInternal
+		return nil, internalerrors.ProcessErrorToReturn(err)
 	}
 	addressClient := make([]AddressClients, len(client.Address))
 	for i, address := range client.Address {
@@ -100,7 +100,7 @@ func (s *ClientsServiceImp) GetAll() ([]contracts.ResponseClient, error) {
 func (s *ClientsServiceImp) Update(id string, request contracts.UpdateClient) error {
 	client, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	client.Name = request.Name
@@ -118,7 +118,7 @@ func (s *ClientsServiceImp) Update(id string, request contracts.UpdateClient) er
 func (s *ClientsServiceImp) Delete(id string)  error {
 	carrier, err := s.Repository.GetById(id)
 	if err != nil {
-		return internalerrors.ErrInternal
+		return internalerrors.ProcessErrorToReturn(err)
 	}
 
 	err = s.Repository.Delete(carrier)
