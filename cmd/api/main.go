@@ -7,13 +7,20 @@ import (
 	"carrierCheck/internal/domain/products"
 	"carrierCheck/internal/endpoints"
 	"carrierCheck/internal/infra/database"
+	"log"
 	"net/http"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+    err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
+
 	router := chi.NewRouter()
 
 	router.Use(middleware.RequestID)
