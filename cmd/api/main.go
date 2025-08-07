@@ -7,6 +7,7 @@ import (
 	"carrierCheck/internal/domain/products"
 	"carrierCheck/internal/endpoints"
 	"carrierCheck/internal/infra/database"
+	"carrierCheck/internal/infra/mail"
 	"log"
 	"net/http"
 
@@ -20,6 +21,13 @@ func main() {
     if err != nil {
         log.Fatal("Error loading .env file")
     }
+
+	errMail := mail.SendMail()
+	if errMail != nil {
+		log.Fatal("Error to send mail", errMail.Error())
+	}
+
+	return 
 
 	router := chi.NewRouter()
 
