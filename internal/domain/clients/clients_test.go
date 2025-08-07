@@ -44,7 +44,7 @@ func Test_NewClient_CreatedAtMustBeNow(t *testing.T) {
 
 func Test_NewClient_MustValidateNameMin(t *testing.T) {
 	assert := assert.New(t)
-	
+
 	_, err := NewClient(fake.Lorem().Text(2), phone, email, []AddressClients{})
 
 	assert.Equal("name is required with min 3", err.Error())
@@ -52,7 +52,7 @@ func Test_NewClient_MustValidateNameMin(t *testing.T) {
 
 func Test_NewClient_MustValidateNameMax(t *testing.T) {
 	assert := assert.New(t)
-	
+
 	_, err := NewClient(fake.Lorem().Text(61), email, phone, []AddressClients{})
 
 	assert.Equal("name is required with max 60", err.Error())
@@ -60,7 +60,7 @@ func Test_NewClient_MustValidateNameMax(t *testing.T) {
 
 func Test_NewClient_MustValidatePhone(t *testing.T) {
 	assert := assert.New(t)
-	
+
 	_, err := NewClient(name, email, "", []AddressClients{})
 
 	assert.Equal("phone is required", err.Error())

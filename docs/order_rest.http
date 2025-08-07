@@ -6,13 +6,18 @@ POST {{url}}/orders
 Content-Type: application/json
 
 {
-    "clientId": "d29lk08qfcbmfu3it4s0",
-    "addressId": "d29lk08qfcbmfu3it4rg",
+    "clientId": "d2aa160qfcbimq75qo8g",
+    "addressId": "d2aa160qfcbimq75qo80",
 	"products": [
 		{
-		    "productId": "d29lk38qfcbmfu3it4sg",
+		    "productId": "d2aa0u0qfcbimq75qo70",
 		    "quantity": 1,
 		    "price": 19.99
+		},
+		{
+		    "productId": "d2aa0ogqfcbimq75qo6g",
+		    "quantity": 1,
+		    "price": 21.99
 		}
 	]
 }

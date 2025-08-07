@@ -2,7 +2,6 @@ package internalerrors
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 
 	"github.com/go-playground/validator"
@@ -11,9 +10,6 @@ import (
 func ValidateStruct(obj interface{}) error {
 	validate := validator.New()
 	err := validate.Struct(obj)
-
-	fmt.Println("Validation err:", err)
-	fmt.Println("Validation obj:", obj)
 
 	if err == nil {
 		return nil

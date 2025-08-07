@@ -12,7 +12,7 @@ var (
     name   = "Test Product"
     price  = 1.50
     qtde   = 10
-	fake = faker.New()
+	fake  = faker.New()
 )
 
 func Test_NewProduct_Create(t *testing.T) {

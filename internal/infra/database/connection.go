@@ -24,7 +24,7 @@ func Connection() *gorm.DB {
     db.AutoMigrate(&clients.Client{})
     db.AutoMigrate(&clients.AddressClients{})
     db.AutoMigrate(&orders.Order{})
-    db.AutoMigrate(&orders.OrderProduct{})
+    db.AutoMigrate(&orders.OrdersProducts{})
 
 	return db
 }

@@ -16,9 +16,9 @@ func (c *OrdersRepository) Save(order *orders.Order) error {
 }
 
 func (c *OrdersRepository) GetAll() ([]orders.Order, error) {
-	var orders []orders.Order
-	tx := c.Db.Find(&orders)
-	return orders, tx.Error
+	var models []orders.Order
+	tx := c.Db.Find(&models)
+	return models, tx.Error
 }
 
 func (c *OrdersRepository) GetById(id string) (*orders.Order, error) {

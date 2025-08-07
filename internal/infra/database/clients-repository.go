@@ -16,9 +16,9 @@ func (c *ClientsRepository) Save(client *clients.Client) error {
 }
 
 func (c *ClientsRepository) GetAll() ([]clients.Client, error) {
-	var clients []clients.Client
-	tx := c.Db.Preload("Address").Find(&clients)
-	return clients, tx.Error
+	var models []clients.Client
+	tx := c.Db.Preload("Address").Find(&models)
+	return models, tx.Error
 }
 
 func (c *ClientsRepository) GetById(id string) (*clients.Client, error) {

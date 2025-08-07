@@ -38,9 +38,9 @@ type OrdersServiceImp struct {
 }
 
 func (s *OrdersServiceImp) Create(createOrder contracts.CreateOrder) (string, error) {
-	product := make([]OrderProduct, len(createOrder.Products))
+	product := make([]OrdersProducts, len(createOrder.Products))
 	for i, prd := range createOrder.Products {
-		product[i] = OrderProduct{
+		product[i] = OrdersProducts{
 			ProductId:      prd.ProductId,
 			Quantity:       prd.Quantity,
 			Price:   prd.Price,
@@ -68,9 +68,9 @@ func (s *OrdersServiceImp) GetById(id string) (*contracts.ResponseOrder, error) 
 		return nil, internalerrors.ErrInternal
 	}
 	
-	product := make([]OrderProduct, len(order.Products))
-	for i, prd := range order.Products {
-		product[i] = OrderProduct{
+	product := make([]OrdersProducts, len(order.OrderProduct))
+	for i, prd := range order.OrderProduct {
+		product[i] = OrdersProducts{
 			ProductId: prd.ProductId,
 			Quantity:  prd.Quantity,
 			Price:     prd.Price,
@@ -93,9 +93,9 @@ func (s *OrdersServiceImp) GetAll() ([]contracts.ResponseOrder, error) {
 
 	responseOrders := make([]contracts.ResponseOrder, len(orders))
 	for i, order := range orders {
-		product := make([]OrderProduct, len(order.Products))
-		for j, prd := range order.Products {
-			product[j] = OrderProduct{
+		product := make([]OrdersProducts, len(order.OrderProduct))
+		for j, prd := range order.OrderProduct {
+			product[j] = OrdersProducts{
 				ProductId: prd.ProductId,
 				Quantity:  prd.Quantity,
 				Price:     prd.Price,
