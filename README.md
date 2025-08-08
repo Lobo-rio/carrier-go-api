@@ -8,16 +8,16 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
 
 ### Libs
 
-Testify - Golang - https://github.com/stretchr/testify
-Globally Unique ID Generator - https://github.com/rs/xid
-Go Playground Validadtor - https://github.com/go-playground/validator/v10
-Chi API REST - https://github.com/go-chi/chi
-Chi Response JSON - https://github.com/go-chi/render
-Faker - https://github.com/jaswdr/faker
-Reload da Aplicação - AIR - https://github.com/air-verse/air
-ORM GORM - https://gorm.io/
-Variáveis de Ambiente - https://github.com/joho/godotenv
-Envio de E-mail - GoMAIL - https://github.com/go-gomail/gomail
+- Testify - Golang - https://github.com/stretchr/testify
+- Globally Unique ID Generator - https://github.com/rs/xid
+- Go Playground Validadtor - https://github.com/go-playground/validator/v10
+- Chi API REST - https://github.com/go-chi/chi
+- Chi Response JSON - https://github.com/go-chi/render
+- Faker - https://github.com/jaswdr/faker
+- Reload da Aplicação - AIR - https://github.com/air-verse/air
+- ORM GORM - https://gorm.io/
+- Variáveis de Ambiente - https://github.com/joho/godotenv
+- Envio de E-mail - GoMAIL - https://github.com/go-gomail/gomail
 
 ---
 
