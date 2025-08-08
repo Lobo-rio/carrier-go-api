@@ -6,18 +6,13 @@ POST {{url}}/orders
 Content-Type: application/json
 
 {
-    "clientId": "d2aa160qfcbimq75qo8g",
-    "addressId": "d2aa160qfcbimq75qo80",
+    "clientId": "d2b2ef8qfcbm041nj8q0",
+    "addressId": "d2b2ef8qfcbm041nj8pg",
 	"products": [
 		{
-		    "productId": "d2aa0u0qfcbimq75qo70",
+		    "productId": "d2b2ej8qfcbm041nj8qg",
 		    "quantity": 1,
 		    "price": 19.99
-		},
-		{
-		    "productId": "d2aa0ogqfcbimq75qo6g",
-		    "quantity": 1,
-		    "price": 21.99
 		}
 	]
 }
@@ -31,7 +26,7 @@ GET {{url}}/orders
 ### Get By ID Order
 GET {{url}}/orders/{{order_id}}
 
-### Get By ID Order - Test Bot Found
+### Get By ID Order - Test Not Found
 GET {{url}}/orders/d2aa2fgqfcbimq75qod0
 
 ### Update Order
@@ -43,13 +38,34 @@ Content-Type: application/json
     "addressId": "",
 }
 
+### Update Order Canceled
+PATCH {{url}}/orders/canceled/{{order_id}}
+
+### Update Status Payment Approved
+PATCH {{url}}/orders/payment-approved/{{order_id}}
+
+### Update Status Separated In Stock
+PATCH {{url}}/orders/separated-in-stock/{{order_id}}
+
+### Update Status Invoice Issued
+PATCH {{url}}/orders/invoice-issued/{{order_id}}
+
+### Update Status In Transit
+PATCH {{url}}/orders/in-transit/{{order_id}}
+
 ### Update Carrier Order
 PATCH {{url}}/orders/carrier/{{order_id}}
 Content-Type: application/json
 
 {
-    "carrierId": ""
+    "carrierId": "d2b4ifgqfcbjt35rdvc0"
 }
+
+### Update Status Out For Delivery
+PATCH {{url}}/orders/out-for-delivery/{{order_id}}
+
+### Update Status Delivery Completed
+PATCH {{url}}/orders/delivery-completed/{{order_id}}
 
 ### Delete Order
 DELETE {{url}}/orders/{{order_id}}

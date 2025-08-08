@@ -6,8 +6,8 @@ POST {{url}}/carriers
 Content-Type: application/json
 
 {
-    "name": "Carrier Create",
-    "email":   ["test@company.com", "test2@company.com", "test3@company.com"],
+    "name": "Carrier Create GSM",
+    "email":   ["gsilvamedeiros@gmail.com"],
 	"phone":   "21 97455-8555",
 	"contact": "John Doe"
 }

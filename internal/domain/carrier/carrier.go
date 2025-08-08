@@ -8,13 +8,13 @@ import (
 )
 
 type EmailCarrier struct {
-	ID 	  string `json:"id" gorm:"size:50"`
+	ID 	  string `json:"id" gorm:"size:50;primaryKey"`
 	Email string `json:"email" validate:"email,min=7,max=100,required" gorm:"size:100"`
 	CarrierId string `json:"carrier_id" gorm:"size:50"`
 }
 
 type Carrier struct {
-    ID        string         `json:"id" validate:"required" gorm:"size:50"`
+    ID        string         `json:"id" validate:"required" gorm:"size:50;primaryKey"`
     Name      string         `json:"name" validate:"min=3,max=60" gorm:"size:60"`
     Email     []EmailCarrier `gorm:"foreignKey:CarrierId;constraint:OnDelete:CASCADE;" validate:"min=1,dive"`
     Phone     string         `json:"phone" validate:"min=13,max=27" gorm:"size:27"`

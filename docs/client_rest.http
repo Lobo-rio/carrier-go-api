@@ -6,8 +6,8 @@ POST {{url}}/clients
 Content-Type: application/json
 
 {
-    "name": "Client Create",
-    "email": "test_tf3@company.com",
+    "name": "Gilberto Medeiros",
+    "email": "gsilvamedeiros@gmail.com",
 	"phone": "21 97455-8555",
 	"address": [
 		{

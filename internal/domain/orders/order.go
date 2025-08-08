@@ -18,10 +18,11 @@ type Order struct {
 	ID              string    `json:"id" gorm:"size:50;primaryKey"`
 	ClientId        string    `json:"client_id" gorm:"size:50" validate:"required"`
 	AddressId       string    `json:"address_id" gorm:"size:50" validate:"required"`
-	Status          string    `json:"status" gorm:"size:20"`
+	CarrierId	    string     `json:"carrier_id" gorm:"size:50"`
+	Status          string    `json:"status" gorm:"size:40"`
 	OrderProduct    []OrdersProducts `json:"products" gorm:"many2many:order_orderproduct;"  validate:"min=1,dive"`
 	CreatedAt       time.Time `json:"created_at" validate:"required"`
-	UpdatedAt       string   `json:"updated_at"` 
+	UpdatedAt       time.Time `json:"updated_at"` 
 }
 
 func NewOrder(clientId string, addressId string, products []OrdersProducts) (*Order, error) {
@@ -49,5 +50,5 @@ func NewOrder(clientId string, addressId string, products []OrdersProducts) (*Or
 		return order, nil
 	}
 
-	return nil, err
+	return order, nil
 }

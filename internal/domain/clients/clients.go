@@ -7,7 +7,7 @@ import (
 	"github.com/rs/xid"
 )
 type AddressClients struct {
-	ID 	  string `json:"id" gorm:"size:50"`
+	ID 	  string `json:"id" gorm:"size:50;primaryKey"`
 	Address string `json:"address" validate:"min=7,max=100,required" gorm:"size:100"`
 	Number string `json:"number" validate:"required" gorm:"size:6"`
 	Complement string `json:"complement" gorm:"size:20"`
@@ -17,7 +17,7 @@ type AddressClients struct {
 	ClientId string `json:"client_id" gorm:"size:50"`
 }
 type Client struct {
-	ID        string `json:"id" validate:"required" gorm:"size:50"`
+	ID        string `json:"id" validate:"required" gorm:"size:50;primaryKey"`
 	Name      string `json:"name" validate:"min=3,max=60" gorm:"size:60"`
 	Email     string `json:"email" validate:"email" gorm:"size:100"`
 	Phone     string `json:"phone" validate:"required" gorm:"size:27"`

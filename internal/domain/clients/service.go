@@ -50,6 +50,7 @@ func (s *ClientsServiceImp) GetById(id string) (*contracts.ResponseClient, error
 	}
 	addressClient := make([]AddressClients, len(client.Address))
 	for i, address := range client.Address {
+		addressClient[i].ID = address.ID
 		addressClient[i].Address = address.Address 
 		addressClient[i].Number = address.Number 
 		addressClient[i].Complement = address.Complement 
@@ -77,6 +78,7 @@ func (s *ClientsServiceImp) GetAll() ([]contracts.ResponseClient, error) {
 	for i, client := range clients {
 		addressClient := make([]AddressClients, len(client.Address))
 		for j, address := range client.Address {
+			addressClient[j].ID = address.ID
 			addressClient[j].Address = address.Address
 			addressClient[j].Number = address.Number
 			addressClient[j].Complement = address.Complement

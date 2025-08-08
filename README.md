@@ -6,6 +6,21 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
 
 ---
 
+### Libs
+
+Testify - Golang - https://github.com/stretchr/testify
+Globally Unique ID Generator - https://github.com/rs/xid
+Go Playground Validadtor - https://github.com/go-playground/validator/v10
+Chi API REST - https://github.com/go-chi/chi
+Chi Response JSON - https://github.com/go-chi/render
+Faker - https://github.com/jaswdr/faker
+Reload da Aplicação - AIR - https://github.com/air-verse/air
+ORM GORM - https://gorm.io/
+Variáveis de Ambiente - https://github.com/joho/godotenv
+Envio de E-mail - GoMAIL - https://github.com/go-gomail/gomail
+
+---
+
 ## Instalação
 
 1. **Pré-requisitos:**
@@ -47,12 +62,17 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
 
 - Variáveis de ambiente podem ser usadas para configurar o banco de dados, porta e outros parâmetros.
 - Exemplo de configuração no arquivo `.env`:
+
   ```env
   DB_HOST=
   DB_USER=
   DB_PASSWORD=
   DB_NAME=
-  DB_PORT=
+
+  GMAIL_PASSWORD=
+  GMAIL_USER=
+  GMAIL_SMTP=
+
   ```
 
 ---
@@ -61,10 +81,10 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
 
 - Acesse os endpoints via HTTP (exemplo: `http://localhost:3000`)
 - Principais rotas:
-  - `/carriers` (GET, POST, PUT, DELETE)
-  - `/clients` (GET, POST, PUT, DELETE)
-  - `/products` (GET, POST, PUT, DELETE)
-  - `/orders` (GET, POST, PUT, DELETE)
+  - `/carriers` (GET, POST, PATCH, DELETE)
+  - `/clients` (GET, POST, PATCH, DELETE)
+  - `/products` (GET, POST, PATCH, DELETE)
+  - `/orders` (GET, POST, PATCH, DELETE)
 - Envie requisições JSON conforme os contratos definidos em `internal/contracts/`
 - Utilize ferramentas como Postman ou Insomnia para testar os endpoints
 
@@ -77,10 +97,10 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
 - `internal/contracts/`: Contratos de entrada/saída
 - `internal/infra/database/`: Conexão e repositórios
 - `internal/endpoints/`: Handlers HTTP
-- `docs/`: Documentação
+- `docs/`: Documentação de envio de requisições
 
 ---
 
 ## Documentação
 
-Consulte o diagrama e exemplos de uso em `/docs/diagram.md` e demais arquivos da pasta `/docs`.
+Consulte o diagrama e exemplos de uso em de envio de requisições para a api em `/docs`.
