@@ -83,6 +83,13 @@ func main() {
 	router.Get("/orders", endpoints.HandlerError(handler.GetAllOrder))
 	router.Patch("/orders/{id}", endpoints.HandlerError(handler.UpdateOrders))
 	router.Patch("/orders/carrier/{id}", endpoints.HandlerError(handler.UpdateCarrierOrder))
+	router.Patch("/orders/canceled/{id}", endpoints.HandlerError(handler.UpdateStatusOrderCanceled))
+	router.Patch("/orders/payment-approved/{id}", endpoints.HandlerError(handler.UpdateStatusPaymentApproved))
+	router.Patch("/orders/separated-in-stock/{id}", endpoints.HandlerError(handler.UpdateStatusSeparatedInStock))
+	router.Patch("/orders/invoice-issued/{id}", endpoints.HandlerError(handler.UpdateStatusInvoiceIssued))
+	router.Patch("/orders/in-transit/{id}", endpoints.HandlerError(handler.UpdateStatusInTransit))
+	router.Patch("/orders/out-for-delivery/{id}", endpoints.HandlerError(handler.UpdateStatusOutForDelivery))
+	router.Patch("/orders/delivery-completed/{id}", endpoints.HandlerError(handler.UpdateStatusDeliveryCompleted))
 	router.Delete("/orders/{id}", endpoints.HandlerError(handler.DeleteOrder))
 
 	http.ListenAndServe(":3000", router)
