@@ -22,13 +22,6 @@ func main() {
         log.Fatal("Error loading .env file")
     }
 
-	errMail := mail.SendMail()
-	if errMail != nil {
-		log.Fatal("Error to send mail", errMail.Error())
-	}
-
-	return 
-
 	router := chi.NewRouter()
 
 	router.Use(middleware.RequestID)
@@ -57,6 +50,7 @@ func main() {
 		Repository: &database.OrdersRepository{
 			Db: connection,
 		},
+		SendMail: mail.SendMail,
 	}
 
 	handler := endpoints.Handler{
