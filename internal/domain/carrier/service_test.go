@@ -35,7 +35,7 @@ func (r *MockCarrierRepository) GetAll() ([]Carrier, error) {
 }
 
 func (r *MockCarrierRepository) GetById(id string) (*Carrier, error) {
-	args := r.Called()
+	args := r.Called(id)
 	return args.Get(0).(*Carrier), args.Error(1)
 }
 
