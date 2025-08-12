@@ -49,7 +49,7 @@ carrier-go-api/
 
 ## Destaques do Projeto 🌟
 
-![API](https://via.placeholder.com/600x200?text=Carrier+API+Logo)
+![API](https://raw.githubusercontent.com/Lobo-rio/carrier-go-api/main/docs/images/carrier-api-logo.png)
 
 - **Tecnologias Utilizadas:**
 
