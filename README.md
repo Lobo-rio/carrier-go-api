@@ -1,27 +1,72 @@
-# carrier-go-api
+# carrier-go-api 🚀
 
 ## Descrição
 
-A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de transportadoras, clientes, produtos e pedidos, integrando funcionalidades essenciais para sistemas logísticos e de gestão comercial. O projeto foi estruturado para garantir escalabilidade, segurança e facilidade de manutenção, utilizando o GORM para persistência em banco de dados relacional e o framework Chi para rotas HTTP. A API permite o cadastro, atualização, consulta e exclusão de entidades como transportadoras, clientes, produtos e pedidos, além de gerenciar relacionamentos entre elas, como endereços, e-mails e itens de pedido. O objetivo é fornecer uma solução robusta para empresas que precisam controlar fluxos logísticos, pedidos e cadastros de forma centralizada, com validações automáticas e integração facilitada. O projeto é ideal para quem busca uma base sólida para sistemas de logística, ERP ou e-commerce, podendo ser facilmente adaptado para diferentes cenários de negócio.
+A **carrier-go-api** é uma API desenvolvida em Go para gerenciar operações de transportadoras, clientes, produtos e pedidos. Ideal para sistemas logísticos e de gestão comercial, o projeto utiliza tecnologias modernas como GORM e Chi para garantir escalabilidade, segurança e facilidade de manutenção.
 
 ---
 
-### Libs
+## Estrutura do Projeto 📂
 
-- Testify - Golang - https://github.com/stretchr/testify
-- Globally Unique ID Generator - https://github.com/rs/xid
-- Go Playground Validadtor - https://github.com/go-playground/validator/v10
-- Chi API REST - https://github.com/go-chi/chi
-- Chi Response JSON - https://github.com/go-chi/render
-- Faker - https://github.com/jaswdr/faker
-- Reload da Aplicação - AIR - https://github.com/air-verse/air
-- ORM GORM - https://gorm.io/
-- Variáveis de Ambiente - https://github.com/joho/godotenv
-- Envio de E-mail - GoMAIL - https://github.com/go-gomail/gomail
+```plaintext
+carrier-go-api/
+├── cmd/
+│   └── api/
+│       └── main.go
+├── internal/
+│   ├── contracts/
+│   │   ├── carrier/
+│   │   │   └── CreateCarrier.go
+│   │   ├── clients/
+│   │   │   └── CreateClient.go
+│   │   ├── products/
+│   │   │   └── CreateProduct.go
+│   ├── domain/
+│   │   ├── carrier/
+│   │   │   ├── carrier.go
+│   │   │   ├── repository.go
+│   │   │   ├── service.go
+│   │   │   └── service_test.go
+│   │   ├── clients/
+│   │   │   ├── clients.go
+│   │   │   ├── repository.go
+│   │   │   ├── service.go
+│   │   │   └── service_test.go
+│   │   ├── products/
+│   │   │   ├── products.go
+│   │   │   ├── repository.go
+│   │   │   ├── service.go
+│   │   │   └── service_test.go
+│   ├── internal-errors/
+│   │   ├── error.go
+│   │   └── validator.go
+├── go.mod
+├── go.sum
+└── README.md
+```
 
 ---
 
-## Instalação
+## Destaques do Projeto 🌟
+
+![API](https://via.placeholder.com/600x200?text=Carrier+API+Logo)
+
+- **Tecnologias Utilizadas:**
+
+  - GORM para ORM
+  - Chi para rotas HTTP
+  - Testify para testes
+  - Godotenv para variáveis de ambiente
+  - Gomail para envio de e-mails
+
+- **Funcionalidades:**
+  - Cadastro, consulta, atualização e exclusão de transportadoras, clientes, produtos e pedidos
+  - Gerenciamento de relacionamentos entre entidades
+  - Validações automáticas
+
+---
+
+## Instalação 🛠️
 
 1. **Pré-requisitos:**
 
@@ -52,32 +97,32 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
    - As tabelas serão criadas automaticamente ao iniciar a aplicação
 
 6. **Inicie a API:**
+
    ```sh
    go run cmd/api/main.go
    ```
 
 ---
 
-## Configuração de Ambiente
+## Configuração de Ambiente 🌍
 
 - Variáveis de ambiente podem ser usadas para configurar o banco de dados, porta e outros parâmetros.
 - Exemplo de configuração no arquivo `.env`:
 
   ```env
-  DB_HOST=
-  DB_USER=
-  DB_PASSWORD=
-  DB_NAME=
+  DB_HOST=localhost
+  DB_USER=postgres
+  DB_PASSWORD=senha
+  DB_NAME=carrier_api
 
-  GMAIL_PASSWORD=
-  GMAIL_USER=
-  GMAIL_SMTP=
-
+  GMAIL_PASSWORD=senha
+  GMAIL_USER=email@gmail.com
+  GMAIL_SMTP=smtp.gmail.com
   ```
 
 ---
 
-## Como Usar a API
+## Como Usar a API 📡
 
 - Acesse os endpoints via HTTP (exemplo: `http://localhost:3000`)
 - Principais rotas:
@@ -90,17 +135,24 @@ A carrier-go-api é uma API desenvolvida em Go para gerenciar operações de tra
 
 ---
 
-## Estrutura do Projeto
+## Documentação 📖
 
-- `cmd/api/main.go`: Ponto de entrada da aplicação
-- `internal/domain/`: Models e regras de negócio
-- `internal/contracts/`: Contratos de entrada/saída
-- `internal/infra/database/`: Conexão e repositórios
-- `internal/endpoints/`: Handlers HTTP
-- `docs/`: Documentação de envio de requisições
+Consulte o diagrama e exemplos de uso em `/docs` para envio de requisições à API.
 
 ---
 
-## Documentação
+## Contribuição 🤝
 
-Consulte o diagrama e exemplos de uso em de envio de requisições para a api em `/docs`.
+Contribuições são bem-vindas! Siga os passos abaixo:
+
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature (`git checkout -b minha-feature`)
+3. Commit suas alterações (`git commit -m 'Adicionei minha feature'`)
+4. Envie para o repositório (`git push origin minha-feature`)
+5. Abra um Pull Request
+
+---
+
+## Licença 📜
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
