@@ -346,8 +346,9 @@ func (s *OrdersServiceImp) SendMailCreatedAt(order *contracts.CreateOrder, numbe
 	to := client.Name + "<" + client.Email + ">"
 	subject := "Order Created Successfully"
     body := "<h1>Tente e Invente Novamente</h1><br>" +
-	        "<h3>Tudo bem " + client.Name + " :-) !!, obrigado pela sua compra, o pedido foi criado com o número: " + numberOrder + 
-			", acesse nosso site para acompanhar os status do seu pedido, clicando no link abaixo</h3><br><br>" +
+	        "<p>Tudo bem " + client.Name + " :-) !!</h3><br>" + 
+			"Obrigado pela sua compra, o pedido foi criado com o número: " + numberOrder + 
+			", acesse nosso site para acompanhar os status do seu pedido, clicando no link abaixo</p><br><br>" +
 			"<a href='https://lobo.rio.br'>Acompanhar Pedido</a><br><br>" +
 	        "<h5>Seu pedido foi criado com sucesso!</h5><br>"
 
@@ -365,8 +366,9 @@ func (s *OrdersServiceImp) SendMailStatusClient(id string, numberOrder string, s
 	to := client.Name + "<" + client.Email + ">"
 	subject := "Order Status Update"
     body := "<h1>Tente e Invente Novamente</h1><br>" +
-	        "<h3>Tudo bem " + client.Name + " :-) !!, O seu pedido entrou no status de " + status + 
-			", para maiores informações, favor clicar no link abaixo e acessar o site. </h3><br><br>" + 
+	        "<h3>Tudo bem " + client.Name + " :-) !!</h3><br>" +
+			"<p>O seu pedido entrou no status de " + status + 
+			", para maiores informações, favor clicar no link abaixo e acessar o site.</p><br><br>" + 
 			"<a href='https://lobo.rio.br'>Acompanhar Pedido</a><br><br>" +
 	        "<h5>Status do pedido " + numberOrder +  " foi alterado com sucesso!</h5><br>"
 
@@ -390,8 +392,9 @@ func (s *OrdersServiceImp) SendMailStatusCarrier(id string, numberOrder string, 
 	to := carrier.Contact + "<" + result + ">"
 	subject := "Order Status Update Carrier"
     body := "<h1>Tente e Invente Novamente</h1><br>" +
-	        "<h3>Tudo bem " + carrier.Contact + " :-) !!, O pedido entrou no status de " + status + 
-			", então a sua empresa, está liberada para efetuar a entrega do(s) produto(s), para maiores informações, favor clicar no link abaixo e acessar o site. </h3><br><br>" + 
+	        "<h3>Tudo bem " + carrier.Contact + " :-) !!</h3><br>" +
+			"<p>O pedido entrou no status de " + status + 
+			", então a sua empresa, está liberada para efetuar a entrega do(s) produto(s), para maiores informações, favor clicar no link abaixo e acessar o site.</p><br><br><p>" + 
 			"<a href='https://lobo.rio.br'>Acompanhar Pedido</a><br><br>" +
 	        "<h5>Status do pedido " + numberOrder +  " foi alterado com sucesso!</h5><br>"
 
